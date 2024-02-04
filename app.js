@@ -5,12 +5,19 @@ import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
+import { config } from 'dotenv';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+if (process.env.NODE_ENV !== 'production'){
+  const envPath = path.resolve(__dirname, '.env');
+  config({path: envPath});
+}
+
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import { error } from 'console';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
@@ -27,7 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // mongoose db connection setup
 mongoose.connect(process.env.DATABASE_URL);
-const db = mongoose.connect;
+const db = mongoose.connection;
+
 db.on('error', err => console.error(err));
 db.once('open', () => console.log('connected'));
 
