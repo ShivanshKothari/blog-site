@@ -1,0 +1,12 @@
+extends partials/header
+
+block content
+  main 
+    h1 Latest Posts
+    each postTile in postTiles
+      a(href=`/${postTile.url}`) 
+        .postCard
+          img(src= postTile.image_path)
+          h2= postTile.heading
+  include partials/footer
+

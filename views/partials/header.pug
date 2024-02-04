@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= title
+    script(src="https://kit.fontawesome.com/1c01e734db.js") 
+    link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
+    link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+    if (locals.homeCSS)
+      link(rel="stylesheet", href="stylesheets/index.css")
+  body
+    nav 
+      .logo 
+      .rightLinks 
+        ul 
+          li 
+            a(href="/") Home
+        ul 
+          li 
+            a(href="") Contact
+        ul 
+          li 
+            a(href="") About
+    block content

@@ -1,0 +1,18 @@
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/login.css')
+
+  body
+    main
+      h1 Welcome Back!
+      form(action='post-manager', method='post')
+        label(for='username') Username:
+        input(type='text', id='username', name='username', required)
+
+        label(for='password') Password:
+        input(type='password', id='password', name='password', required)
+
+        button(type='submit') Log In
+
+        p#warning= warning

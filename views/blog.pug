@@ -1,0 +1,20 @@
+extends partials/header
+
+block content 
+    main.blogMain 
+        .container-fluid
+            .row
+                .postContent.col-lg-9.d-flex.flex-column.p-4
+                    h1= blogPost.heading
+                    img.img-fluid(src= blogPost.image_path)
+                    p= blogPost.post_text
+                .suggestionsPane.col-lg-3.p-4
+                    h2 Also read 
+                    if (locals.postTiles)
+                        each post in postTiles
+                            a(href=`/${post.url}`) 
+                                .postTile
+                                    img(src= post.image_path, alt="")
+                                    h3= post.heading 
+    include partials/footer
+            

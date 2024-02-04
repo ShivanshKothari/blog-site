@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Post Manager
+    script(src="https://kit.fontawesome.com/1c01e734db.js") 
+    link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
+    link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
+    link(rel="stylesheet", href="/stylesheets/post-manager.css")
+  body
+    .post-container
+      p astarst
+      each post in postTiles
+        .post
+          img(src=post.image_path alt=post.heading)
+          h2.post-heading.eg5(onmouseover="toggleDeleteButton(this)") #{post.heading}
+          button.delete-button(onclick="deletePost(this)" hidden) 
+            i.fa-solid.fa-trash-can

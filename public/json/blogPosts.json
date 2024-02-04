@@ -1,0 +1,59 @@
+[
+    {
+      "id": 1,
+      "url": "blog/post1",
+      "image_path": "/images/1.png",
+      "heading": "Sample Blog Post 1",
+      "author_name": "John Doe",
+      "date_created": "2024-01-01T12:00:00Z",
+      "last_modified": "2024-01-01T12:00:00Z",
+      "tags": ["technology", "coding"],
+      "post_text": "Hi there!😊 I know you're wondering what you are doing here!\n\nDon't worry! Your visit to this page will be fruitful given you have read about Shree Krishna or Bhagwad Geeta or Shrimad Bhagwatam. I am a student who is trying to learn the way of life from the well renowned scripture Bhagwad Geeta.\n\nI am a very lazy person, I tend to leave things halfway sometimes but thanks to the duty of maintaining this blog, I believe I will not be led astray from the path of reading Bhagwad Geeta and will learn useful things which will surely be applicable in my life.\nAs for what's in it for you, you get refined lessons(from trusted sources, not Trust me Vro👀) or experiences from daily life which may even help you. Don't worry, this won't be as boring as a book! I will tend to keep things entertaining by sharing my daily experiences and maintain this like a diary so that you can laugh, cry, feel and most importantly live with me.\nThis post is for me to declare this to the world that I'm gonna dive into the knowledge of this eternal nectar and see what I can make out of it.\nA request from my side, please stay with me on this journey as the whole point behind declaring my work to the whole world is for me to be on track. The pressure from people reading will keep me working😅"
+    },
+    {
+      "id": 2,
+      "url": "blog/post2",
+      "image_path": "/images/1.png",
+      "heading": "Sample Blog Post 2",
+      "author_name": "Jane Smith",
+      "date_created": "2024-01-02T14:30:00Z",
+      "last_modified": "2024-01-02T14:30:00Z",
+      "tags": ["travel", "photography"],
+      "post_text": "Hi there!😊 I know you're wondering what you are doing here!\n\nDon't worry! Your visit to this page will be fruitful given you have read about Shree Krishna or Bhagwad Geeta or Shrimad Bhagwatam. I am a student who is trying to learn the way of life from the well renowned scripture Bhagwad Geeta.\n\nI am a very lazy person, I tend to leave things halfway sometimes but thanks to the duty of maintaining this blog, I believe I will not be led astray from the path of reading Bhagwad Geeta and will learn useful things which will surely be applicable in my life.\nAs for what's in it for you, you get refined lessons(from trusted sources, not Trust me Vro👀) or experiences from daily life which may even help you. Don't worry, this won't be as boring as a book! I will tend to keep things entertaining by sharing my daily experiences and maintain this like a diary so that you can laugh, cry, feel and most importantly live with me.\nThis post is for me to declare this to the world that I'm gonna dive into the knowledge of this eternal nectar and see what I can make out of it.\nA request from my side, please stay with me on this journey as the whole point behind declaring my work to the whole world is for me to be on track. The pressure from people reading will keep me working😅"
+    },
+    {
+      "id": 3,
+      "url": "blog/post3",
+      "image_path": "/images/1.png",
+      "heading": "Sample Blog Post 3",
+      "author_name": "Jane Smith",
+      "date_created": "2024-01-02T14:30:00Z",
+      "last_modified": "2024-01-02T14:30:00Z",
+      "tags": ["travel", "photography"],
+      "post_text": "This is another blog post."
+    },
+    {
+      "id": 4,
+      "url": "blog/post4",
+      "image_path": "/images/1.png",
+      "heading": "Sample Blog Post 4",
+      "author_name": "Jane Smith",
+      "date_created": "2024-01-02T14:30:00Z",
+      "last_modified": "2024-01-02T14:30:00Z",
+      "tags": ["travel", "photography"],
+      "post_text": "This is another blog post."
+    },
+    {
+      "id": 5,
+      "url": "blog/post5",
+      "image_path": "/images/1.png",
+      "heading": "Sample Blog Post 5",
+      "author_name": "Jane Smith",
+      "date_created": "2024-01-02T14:30:00Z",
+      "last_modified": "2024-01-02T14:30:00Z",
+      "tags": ["travel", "photography"],
+      "post_text": "This is another blog post."
+    }
+    
+  ]
+  
