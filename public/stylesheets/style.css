@@ -78,7 +78,7 @@ main > .postContent {
 }
 
 p {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 main > .suggestionsPane {
@@ -91,7 +91,7 @@ main > .suggestionsPane {
   padding-left: 1em;
 }
 
-.postTile h3 {
+.postTile h5 {
   color: black;
 }
 

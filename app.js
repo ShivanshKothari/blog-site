@@ -16,7 +16,6 @@ if (process.env.NODE_ENV !== 'production'){
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
-import { error } from 'console';
 
 
 const app = express();
@@ -35,9 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // mongoose db connection setup
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
+db.on('error', (err) => console.error(err));
+db.once('open', () => console.log('done'));
 
-db.on('error', err => console.error(err));
-db.once('open', () => console.log('connected'));
 
 // router setup
 app.use('/', indexRouter);

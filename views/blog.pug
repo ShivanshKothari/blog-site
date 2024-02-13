@@ -7,7 +7,7 @@ block content
                 .postContent.col-lg-9.d-flex.flex-column.p-4
                     h1= blogPost.heading
                     img.img-fluid(src= blogPost.image_path)
-                    p= blogPost.post_text
+                    p!= blogPost.post_text
                 .suggestionsPane.col-lg-3.p-4
                     h2 Also read 
                     if (locals.postTiles)
@@ -15,6 +15,6 @@ block content
                             a(href=`/${post.url}`) 
                                 .postTile
                                     img(src= post.image_path, alt="")
-                                    h3= post.heading 
+                                    h5= post.heading 
     include partials/footer
             
