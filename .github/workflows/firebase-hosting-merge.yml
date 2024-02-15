@@ -8,8 +8,6 @@ name: Deploy to Firebase Hosting on merge
       - main
 
 jobs:
-  env:
-    DATABASE_URL: ${{secrets.API_KEY}}
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
