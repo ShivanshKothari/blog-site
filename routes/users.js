@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { Blog } from '../database/blogsData';
+import { Blog } from '../database/blogsData.js';
 
 
 const router = express.Router();
