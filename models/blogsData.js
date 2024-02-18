@@ -52,7 +52,7 @@ blogDataSchema.pre('save', async function (next) {
     }
 });
 
-export const Blog = mongoose.model('blogData', blogDataSchema);
+export const Blog = mongoose.model('blogDatas', blogDataSchema);
 export const blogPosts = Blog.find();
 export const postTiles = Blog.find().select('image_path url heading');
 

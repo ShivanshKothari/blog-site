@@ -25,7 +25,7 @@ import blogsRouter from "./routes/blogs.js";
 const app = express();
 
 // mongoose db connection setup
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL, {dbName: "siteData"});
 const db = mongoose.connection;
 db.on("error", (err) => console.error(err));
 db.once("open", () => console.log("done"));
