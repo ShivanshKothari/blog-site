@@ -8,6 +8,7 @@ export const homeController = async (req, res, next) => {
         .select("image_path url heading")
         .sort({ id: -1 }),
       homeCSS: "y",
+      loggedIn: req.session.authorized
     };
     res.render("index", data);
   } catch (error) {

@@ -12,6 +12,7 @@ export const blogController = async (req, res) => {
         .select("image_path url heading")
         .sort({ id: -1 }),
       path: lastPartOfPath,
+      loggedIn: req.session.authorized
     };
     res.render("blog", data);
   } catch (error) {

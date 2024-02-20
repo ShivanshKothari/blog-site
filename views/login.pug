@@ -1,18 +1,19 @@
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/login.css')
+extends partials/header
 
-  body
-    main
+block content
+  main
+    form(action='/u/submit', method='post')
       h1 Welcome Back!
-      form(action='/u/submit', method='post')
-        label(for='email') Email:
-        input(type='email', id='email', name='email', required)
+      label(for='email') Email:
+      input(type='email', id='email', name='email', required)
 
-        label(for='password') Password:
-        input(type='password', id='password', name='password', required)
+      label(for='password') Password:
+      input(type='password', id='password', name='password', required)
 
-        button(type='submit') Log In
+      button(type='submit') Log In
 
-        p#warning= warning
+      p#warning= warning
+      hr
+      label(for="Signup") Don't have an account? 
+        a(href="https://w3y2e11pis3.typeform.com/to/cXXUY148") SignUp
+  include partials/footer

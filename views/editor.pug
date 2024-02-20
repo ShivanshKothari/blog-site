@@ -1,15 +1,19 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        main 
-            form(action="submit", method="post") 
-                label(for="title") Post Title 
-                input#title(type="text", name="title") placeholder
-                label(for="tags") Post Title 
-                input#tags(type="text", name="tags") placeholder
-                label(for="author") Post Title 
-                input#author(type="text", name="author") placeholder
+extends partials/header
+
+block content 
+    main.blogMain 
+        .container-fluid
+            .row
+                .postContent.col-lg-9.d-flex.flex-column.p-4
+                    h1= blogPost.heading
+                    img.img-fluid(src= blogPost.image_path)
+                    p!= blogPost.post_text
+                .suggestionsPane.col-lg-3.p-4
+                    h2 Also read 
+                    if (locals.postTiles)
+                        each post in postTiles
+                            a(href=`/${post.url}`) 
+                                .postTile
+                                    img(src= post.image_path, alt="")
+                                    h3= post.heading 
+    include partials/footer

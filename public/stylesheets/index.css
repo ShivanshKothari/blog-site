@@ -3,13 +3,13 @@ main {
     flex-direction: column;
     margin-left: 50%;
     transform: translateX(-50%);
-    border: gray dotted;
+    border: #d45c00 dotted;
     border-width: 0 1px;
     padding: 4em 2em;
 }
 
 img {
-    border: gray solid;
+    border: #d45c00 solid;
     object-fit: cover;
     aspect-ratio: 16 / 9;
     width: 100%;

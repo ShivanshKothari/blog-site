@@ -1,7 +1,7 @@
 extends partials/header
 
 block content
-  main 
+  main.col-md-8.col-lg-6
     h1 Latest Posts
     each postTile in postTiles
       a(href=`/${postTile.url}`) 

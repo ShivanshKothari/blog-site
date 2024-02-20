@@ -6,6 +6,8 @@ html
     link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
+    link(rel="stylesheet", href= loginCSS)
+    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
     if (locals.homeCSS)
       link(rel="stylesheet", href="stylesheets/index.css")
   body
@@ -17,8 +19,12 @@ html
             a(href="/") Home
         ul 
           li 
-            a(href="") Contact
+            a(href="") About
         ul 
           li 
-            a(href="") About
+            a(href="/u")
+              if(locals.loggedIn)
+                i.fa-solid.fa-user
+              else 
+                = 'Login'
     block content
