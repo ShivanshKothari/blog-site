@@ -63,6 +63,7 @@ app.use(
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.DATABASE_URL,
+      dbName: 'siteData',
       touchAfter: 24 * 3600, // time period in seconds
       autoRemove: "interval",
       autoRemoveInterval: 10,
