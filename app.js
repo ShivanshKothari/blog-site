@@ -35,20 +35,20 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // middleware setup
-app.use(logger("combined"));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 
 // Session secret
-// app.use((req, res, next) => {
-//   const now = new Date();
-//   process.env.SESSION_SECRET = now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0 && now.getMilliseconds() === 0
-//     ? randomBytes(32).toString("hex")
-//     : process.env.SESSION_SECRET;
+app.use((req, res, next) => {
+  const now = new Date();
+  process.env.SESSION_SECRET = now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0 && now.getMilliseconds() === 0
+    ? randomBytes(32).toString("hex")
+    : process.env.SESSION_SECRET;
 
-//   next();
-// });
+  next();
+});
 // const sessionnSecret =
 //     now.getDate() === 1
 //       ? randomBytes(32).toString("hex")
