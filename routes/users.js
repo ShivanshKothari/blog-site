@@ -1,5 +1,5 @@
 import express from "express";
-import {loginController, submitController } from "../controllers/usersControllers.js";
+import {loginController, submitController, editorController } from "../controllers/usersControllers.js";
 
 
 const router = express.Router();
@@ -9,17 +9,6 @@ router.get("/", loginController);
 
 router.post("/submit", submitController);
 
-// router.get("/editor", async (req, res) => {
-//   if (
-//     req.body["username"] === "ShivanshKothari" &&
-//     req.body["password"] === "Skothari"
-//   )
-//     res.render("postmanager", {
-//       postTiles: await Blog.find({})
-//         .select("image_path heading url")
-//         .sort({ id: -1 }),
-//     });
-//   else res.redirect(`./?cred-error`);
-// });
+router.get("/editor", editorController);
 
 export default router;

@@ -8,7 +8,7 @@ export const loginController = async (req, res) => {
     loginCSS: "/stylesheets/login.css",
     loggedIn: req.session.authorized
   };
-  console.log(req.session.authorized);
+  console.log(req.session.authorized+"arstrad");
   if (req.session.authorized) {
     console.log("User Login");
     res.render("postmanager", {
@@ -35,8 +35,27 @@ export const submitController = async (req, res) => {
     if (userAuthorized) {
       req.session.user = user;
       req.session.authorized = true;
-      console.log("User authorized");
+      req.session.save();
+      console.log("User authorized" + req.session.authorized);
       res.redirect("./");
     } else res.redirect("./?cred-error=error");
   } else res.redirect(`./?cred-error=error`);
+};
+
+export const editorController = async (req, res) => {
+  // const user = await User.findOne({ email: req.body.email });
+  // // await console.log("Reached submit");
+  // if (user) {
+  //   const userAuthorized = await bcrypt.compare(
+  //     req.body.password,
+  //     user.password
+  //   );
+  //   if (userAuthorized) {
+  //     req.session.user = user;
+  //     req.session.authorized = true;
+  //     console.log("User authorized");
+  //     res.redirect("./");
+  //   } else res.redirect("./?cred-error=error");
+  // } else 
+  res.redirect(`./?cred-error=error`);
 };

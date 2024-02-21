@@ -3,6 +3,7 @@ html
   head
     title= title
     script(src="https://kit.fontawesome.com/1c01e734db.js") 
+    meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
@@ -11,10 +12,10 @@ html
     if (locals.homeCSS)
       link(rel="stylesheet", href="stylesheets/index.css")
   body
-    nav 
+    nav
       .logo 
       .rightLinks 
-        ul 
+        ul
           li 
             a(href="/") Home
         ul 

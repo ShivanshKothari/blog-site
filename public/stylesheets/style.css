@@ -30,6 +30,7 @@ nav {
   flex-wrap: wrap;
   width: 100%;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 nav ul,a {
@@ -47,6 +48,7 @@ nav ul,a {
 
 main {
   padding-top: 6em;
+  box-sizing: border-box;
 }
 
 main.blogMain{
@@ -72,7 +74,7 @@ main > .postContent {
 }
 
 .postContent > img{
-  margin: 2em;
+  margin: 2em 0em;
   max-width: 500px;
   align-self: center;
 }
@@ -99,6 +101,7 @@ img {
   object-fit: cover;
   aspect-ratio: 16 / 9;
   width: 100%;
+  box-sizing: border-box;
 }
 
 footer {
@@ -118,7 +121,7 @@ footer h3 {
 footer ul {
   list-style: none;
   display: flex;
-
+  flex-wrap: wrap;
   gap: 20px;
   margin: 0;
 }
@@ -129,12 +132,15 @@ footer a {
 
 @media (max-width: 992px) {
   .postContent img {
-    min-width: 300px;
+    min-width: 250px;
   }
 }
 
 @media (max-width: 780px) {
   main > .postContent {
     max-width: 100%;
+  }
+  nav ul,a {
+    font-size: 1em;
   }
 }

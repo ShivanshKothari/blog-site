@@ -1,12 +1,14 @@
 extends partials/header
 
 block content
-  main.col-md-8.col-lg-6
+  
+
+  main.col-12.col-sm-12.col-md-8.col-lg-6
     h1 Latest Posts
     each postTile in postTiles
       a(href=`/${postTile.url}`) 
         .postCard
-          img(src= postTile.image_path)
+          img.img-responsive(src= postTile.image_path)
           h2= postTile.heading
   include partials/footer
 

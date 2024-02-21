@@ -35,22 +35,30 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // middleware setup
-app.use(logger("dev"));
+app.use(logger("combined"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 
 // Session secret
-const now = new Date();
-const sessionSecret =
-  now.getDate() === 1
+app.use((req, res, next) => {
+  const now = new Date();
+  process.env.SESSION_SECRET = now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0 && now.getMilliseconds() === 0
     ? randomBytes(32).toString("hex")
     : process.env.SESSION_SECRET;
-process.env.SESSION_SECRET = sessionSecret;
+
+  next();
+});
+// const sessionnSecret =
+//     now.getDate() === 1
+//       ? randomBytes(32).toString("hex")
+//       : process.env.SESSION_SECRET;
+// process.env.SESSION_SECRET = sessionnSecret;
+
 
 app.use(
   session({
-    secret: sessionSecret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({

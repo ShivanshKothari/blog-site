@@ -1,13 +1,15 @@
 import express from "express";
-// import path from "path";
-// import { fileURLToPath } from "url";
 import { homeController } from "../controllers/indexControllers.js";
 
 const router = express.Router();
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-// router.use(express.static(path.join(__dirname + "/../public")));
 
 // create();
+
+/* GET home page. */
+router.get("/", homeController);
+
+export default router;
+
 async function create() {
   try {
     await Blog.create([
@@ -68,9 +70,3 @@ async function create() {
     console.error(error.message);
   }
 }
-
-/* GET home page. */
-router.get("/", homeController);
-
-
-export default router;
