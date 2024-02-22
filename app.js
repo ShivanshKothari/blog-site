@@ -18,6 +18,7 @@ if (process.env.NODE_ENV !== "production") {
   config({ path: envPath });
   cookieSecure = false;
 }
+console.log(process.env.NODE_ENV);
 
 import indexRouter from "./routes/index.js";
 import usersRouter from "./routes/users.js";
