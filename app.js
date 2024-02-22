@@ -73,7 +73,7 @@ app.use(
     cookie: {
       name: 'Session',
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: !(process.env.NODE_ENV !== 'production'),
+      secure: false,
       // sameSite: 'none',
       // httpOnly: true,
       path: '/'
