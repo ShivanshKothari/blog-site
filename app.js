@@ -18,7 +18,7 @@ if (process.env.NODE_ENV !== "production") {
   const envPath = path.resolve(__dirname, ".env");
   config({ path: envPath });
 }
-console.log(process.env.NODE_ENV);
+
 
 import indexRouter from "./routes/index.js";
 import usersRouter from "./routes/users.js";
@@ -73,13 +73,13 @@ app.use(
       name: 'Session',
       maxAge: 2 * 24 * 60 * 60 * 1000,
       secure: !(process.env.NODE_ENV !== 'production'),
-      // sameSite: 'none',
+      sameSite: 'none',
       httpOnly: true,
       path: '/'
     },
   })
 );
-console.log(process.env.CLIENT_URL)
+console.log("Process NODE_ENV: " + process.env.NODE_ENV + "\nProcess CLIENT_URL: " + process.env.CLIENT_URL + "\nCookie secure: " + !(process.env.NODE_ENV !== 'production'));
 axios.withCredentials = true;
 app.use(express.static(path.join(__dirname, "public")));
 
