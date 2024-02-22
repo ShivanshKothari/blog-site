@@ -9,14 +9,14 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
 import cron from "node-cron";
+import cors from "cors";
+import axios from "axios";
 
 import { config } from "dotenv";
-let cookieSecure = true;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 if (process.env.NODE_ENV !== "production") {
   const envPath = path.resolve(__dirname, ".env");
   config({ path: envPath });
-  cookieSecure = false;
 }
 console.log(process.env.NODE_ENV);
 
@@ -52,7 +52,10 @@ cron.schedule('0 0 1 * *', () => {
 //       ? randomBytes(32).toString("hex")
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
-
+// const corsOptions = {
+//   origin: '*'
+// };
+// app.use(cors(corsOptions));
 app.set('trust-proxy', 1);
 app.use(
   session({
@@ -67,13 +70,17 @@ app.use(
       autoRemoveInterval: 10,
     }),
     cookie: {
+      name: 'Session',
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: cookieSecure,
-      sameSite: 'none',
-      httpOnly: true
+      secure: !(process.env.NODE_ENV !== 'production'),
+      // sameSite: 'none',
+      httpOnly: true,
+      path: '/'
     },
   })
 );
+console.log(process.env.CLIENT_URL)
+axios.withCredentials = true;
 app.use(express.static(path.join(__dirname, "public")));
 
 // router setup
