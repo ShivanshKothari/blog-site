@@ -57,10 +57,11 @@ const corsOptions = {
   credentials: true
 };
 app.use(cors(corsOptions));
-app.set('trust-proxy', 1);
+// app.set('trust-proxy', 1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    proxy: true,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
@@ -73,7 +74,7 @@ app.use(
     cookie: {
       name: 'Session',
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: false,
+      secure: true,
       // sameSite: 'none',
       // httpOnly: true,
       path: '/'
