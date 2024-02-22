@@ -52,7 +52,7 @@ cron.schedule('0 0 1 * *', () => {
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
 
-// app.set('trust-proxy', 1);
+app.set('trust-proxy', 1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
