@@ -75,7 +75,7 @@ app.use(
       maxAge: 2 * 24 * 60 * 60 * 1000,
       secure: !(process.env.NODE_ENV !== 'production'),
       sameSite: 'none',
-      httpOnly: true,
+      // httpOnly: true,
       path: '/'
     },
   })
