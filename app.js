@@ -8,7 +8,7 @@ import mongoose, { mongo } from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
-import cron from "cron";
+import cron from "node-cron";
 
 import { config } from "dotenv";
 let cookieSecure = true;
@@ -52,7 +52,7 @@ cron.schedule('0 0 1 * *', () => {
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
 
-app.set('trust-proxy', 1);
+// app.set('trust-proxy', 1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
