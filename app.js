@@ -81,7 +81,7 @@ app.use(
   })
 );
 console.log("Process NODE_ENV: " + process.env.NODE_ENV + "\nProcess CLIENT_URL: " + process.env.CLIENT_URL + "\nCookie secure: " + !(process.env.NODE_ENV !== 'production'));
-axios.withCredentials = true;
+axios.defaults.withCredentials = true;
 app.use(express.static(path.join(__dirname, "public")));
 
 // router setup
