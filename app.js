@@ -52,10 +52,10 @@ cron.schedule('0 0 1 * *', () => {
 //       ? randomBytes(32).toString("hex")
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
-// const corsOptions = {
-//   origin: '*'
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+  origin: '*'
+};
+app.use(cors(corsOptions));
 app.set('trust-proxy', 1);
 app.use(
   session({
