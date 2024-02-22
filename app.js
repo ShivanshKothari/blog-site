@@ -8,6 +8,7 @@ import mongoose, { mongo } from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
+import cron from "cron";
 
 import { config } from "dotenv";
 let cookieSecure = true;
@@ -41,21 +42,17 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 
 // Session secret
-// app.use((req, res, next) => {
-//   const now = new Date();
-//   process.env.SESSION_SECRET = now.getDate() === 1 && now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0 && now.getMilliseconds() === 0
-//     ? randomBytes(32).toString("hex")
-//     : process.env.SESSION_SECRET;
-
-//   next();
-// });
+cron.schedule('0 0 1 * *', () => {
+  process.env.SESSION_SECRET = crypto.randomBytes(32).toString('hex');
+  console.log('Session secret updated');
+});
 // const sessionnSecret =
 //     now.getDate() === 1
 //       ? randomBytes(32).toString("hex")
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
 
-
+app.set('trust-proxy', 1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -71,6 +68,7 @@ app.use(
     cookie: {
       maxAge: 2 * 24 * 60 * 60 * 1000,
       secure: cookieSecure,
+      sameSite: 'none',
       httpOnly: true
     },
   })

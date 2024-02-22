@@ -35,7 +35,7 @@ export const submitController = async (req, res) => {
     if (userAuthorized) {
       req.session.user = user;
       req.session.authorized = true;
-      await req.session.save();
+      // await req.session.save();
       console.log("User authorized" + req.session.authorized);
       res.redirect("./");
     } else res.redirect("./?cred-error=error");
