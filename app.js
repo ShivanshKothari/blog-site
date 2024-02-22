@@ -9,8 +9,8 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
 import cron from "node-cron";
-import cors from "cors";
-import axios from "axios";
+// import cors from "cors";
+// import axios from "axios";
 
 import { config } from "dotenv";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -52,12 +52,12 @@ cron.schedule('0 0 1 * *', () => {
 //       ? randomBytes(32).toString("hex")
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
-const corsOptions = {
-  origin: '*',
-  credentials: true
-};
-app.use(cors(corsOptions));
-// app.set('trust-proxy', 1);
+// const corsOptions = {
+//   origin: '*',
+//   credentials: true
+// };
+// app.use(cors(corsOptions));
+// // app.set('trust-proxy', 1);
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -82,7 +82,7 @@ app.use(
   })
 );
 console.log("Process NODE_ENV: " + process.env.NODE_ENV + "\nProcess CLIENT_URL: " + process.env.CLIENT_URL + "\nCookie secure: " + !(process.env.NODE_ENV !== 'production'));
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 app.use(express.static(path.join(__dirname, "public")));
 
 // router setup
