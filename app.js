@@ -53,7 +53,8 @@ cron.schedule('0 0 1 * *', () => {
 //       : process.env.SESSION_SECRET;
 // process.env.SESSION_SECRET = sessionnSecret;
 const corsOptions = {
-  origin: '*'
+  origin: '*',
+  credentials: true
 };
 app.use(cors(corsOptions));
 app.set('trust-proxy', 1);
