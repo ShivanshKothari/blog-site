@@ -1,19 +1,43 @@
-extends partials/header
+extends partials/appHeader
 
 block content 
     main.blogMain 
         .container-fluid
-            .row
-                .postContent.col-lg-9.d-flex.flex-column.p-4
-                    h1= blogPost.heading
-                    img.img-fluid(src= blogPost.image_path)
-                    p!= blogPost.post_text
+            
+            form.row(action="submit" method="post")
+                .postContent.col-lg-9.d-flex.flex-column.p-4#postContent
+                    .form-group
+                    label(for="heading") Post title:
+                    input(type="text" id="heading" name="heading" required)
+                    .form-group
+                    label(for="image_path") Add new image:
+                    input(type="file" id="image_path" name="image_path" value="https://firebasestorage.googleapis.com/v0/b/myvedicjourney-58d53.appspot.com/o/images%2F1708073860039?alt=media&token=bb96520f-e146-44e5-866e-fcf7ea078852" accept="image/*")
+                    .form-group
+                    label(for="post_text") Post Text:
+                    .toolBar
+                        input(type="button" onclick="boldSelectedText()" value="B")
+                        input(type="button" onclick="italicSelectedText()" value="I")
+                        input(type="button" onclick="centerSelectedText()" value="C")
+                        input(type="button" onclick="createLinkSelectedText()" value="🔗")
+                        input(type="button" onclick="togglePreview()" value="Preview")
+                    textarea(id="post_text" name="post_text" rows="10" required)
+                    input(type="submit") 
+                .main
+                    input(type="button" onclick="togglePreview()" value="Edit")
+                    .postContent.col-lg-9.d-flex.flex-column.p-4.hidden#postPreview
+                            //- #postPreview
                 .suggestionsPane.col-lg-3.p-4
-                    h2 Also read 
-                    if (locals.postTiles)
-                        each post in postTiles
-                            a(href=`/${post.url}`) 
-                                .postTile
-                                    img(src= post.image_path, alt="")
-                                    h3= post.heading 
+                    h2 Also read
+                    .form-group
+                    label(for="url") URL:
+                    input(type="text" id="url" name="url")
+                    .form-group
+                    label(for="tags") Tags:
+                    input(type="text" id="tags" name="tags")
+                    .form-group
+                    label(for="author") Author:
+                    input(type="text" id="author" name="author" value= author disabled)
+
     include partials/footer
+    script(src="/js/editor.js") 
+            

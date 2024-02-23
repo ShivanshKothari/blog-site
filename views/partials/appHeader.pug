@@ -9,19 +9,20 @@ html
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
     link(rel="icon", type="image/x-icon", href="/images/favicon.png")
-    if (locals.homeCSS)
-      link(rel="stylesheet", href="stylesheets/index.css")
+    link(rel="stylesheet", href="/stylesheets/editor.css")
   body
     nav
       .logo 
+        a(href="../" alt="Previous page link") 
+            img(src="/images/favicon.png", alt="Site Logo" height="20em")
       .rightLinks 
         ul
           li 
-            a(href="/") Home
-         
+            a(href="/" alt="Home page link") Home
+        ul 
           li 
             a(href="") About
-        
+        ul 
           li 
             a(href="/u")
               if(locals.loggedIn)

@@ -39,7 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-// Session secret
+// Session management setup
 cron.schedule('0 0 1 * *', () => {
   process.env.SESSION_SECRET = randomBytes(32).toString('hex');
   console.log('Session secret updated');
@@ -56,13 +56,13 @@ app.use(
       dbName: 'siteData',
       touchAfter: 24 * 3600, // time period in seconds
       autoRemove: "interval",
-      autoRemoveInterval: 10,
+      autoRemoveInterval: 10, // 10 minutes to delete a cookie after it expires
     }),
     cookie: {
       name: 'Session',
       maxAge: 2 * 24 * 60 * 60 * 1000,
-      secure: true,
-      // sameSite: 'none',
+      secure: !(process.env.NODE_ENV !== 'production'),
+      sameSite: 'strict',
       httpOnly: true,
       path: '/'
     },

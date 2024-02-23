@@ -4,11 +4,13 @@ import {loginController, submitController, editorController } from "../controlle
 
 const router = express.Router();
 
-/* GET users listing. */
+// GET login page. 
 router.get("/", loginController);
 
+// Credentials check on submission and create session cookie
 router.post("/submit", submitController);
 
+// Edit post
 router.get("/editor", editorController);
 
 export default router;

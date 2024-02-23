@@ -1,0 +1,11 @@
+.toolBar {
+    display: flex;
+}
+
+form {
+    min-height: 80vh;
+}
+
+.hidden {
+    display: none !important;
+}

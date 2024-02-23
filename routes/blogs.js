@@ -3,7 +3,7 @@ import { blogController } from '../controllers/blogsControllers.js';
 
 const router = express.Router();
 
-
+// Load blog
 router.get('/:postPath', blogController);
 
 export default router;
