@@ -43,6 +43,7 @@ function formatSelectedText(openTag, closeTag) {
   
   // "Show preview" functionality
 function togglePreview() {
+    document.querySelector(".main > input").classList.toggle("hidden");  
     document.querySelector("#postPreview").classList.toggle("hidden");  
     document.querySelector("#postPreview").innerHTML = document.querySelector("#post_text").value;
     console.log(document.querySelector("#post_text").value)
@@ -51,5 +52,5 @@ function togglePreview() {
 
 // Event Listeners
 document.querySelector("#heading").addEventListener("keyup", ()=> {
-    document.querySelector("#url").value = encodeURI(document.querySelector("#heading").value.trim());
+    document.querySelector("#url").value = encodeURIComponent(document.querySelector("#heading").value.trim());
 })

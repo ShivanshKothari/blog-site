@@ -25,7 +25,7 @@ export const loginController = async (req, res) => {
   } else {
     // Handle potential login error message
     if (req.query["cred-error"] === "error") {
-      pageData["warning"] = "Incorrect username or password ¬_¬";
+      pageData["warning"] = "Incorrect username or password ¬_¬" ;
     }
 
     // Render login page with or without error message
@@ -65,7 +65,8 @@ export const submitController = async (req, res) => {
 
 export const editorController = async (req, res) => {
   const pageProps = {
-    author: req.session.user.email
+    author: req.session.user.email,
+    lastPath: req.params.lastPath
   };
   res.render('editor', pageProps);
 

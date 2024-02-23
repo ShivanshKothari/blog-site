@@ -1,9 +1,40 @@
 .toolBar {
     display: flex;
+    gap: 0.5%;
+}
+
+.toolBar > * {
+    /* border: solid 1px #d45c00; */
+    border-radius: 5%;
+    flex-basis: 2em;
+}
+
+input, textarea {
+    border: solid 1px #d45c00;
+    margin: 10px 0;
+}
+
+label[for="image_path"] > input {
+    display: inline;
+    background-color: #d45c00;
+    color: white;
+    border: none;
+    border-radius: 5%;
+    padding: 10px;
+}
+
+label[for="add_image"] {
+    border: solid 1px #d45c00;
+    text-align: center;
+    margin: 10px 0;
+}
+
+input[type="file"] {
+    display: none;
 }
 
 form {
-    min-height: 80vh;
+    min-height: 75vh;
 }
 
 .hidden {

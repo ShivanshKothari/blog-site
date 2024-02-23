@@ -11,6 +11,6 @@ router.get("/", loginController);
 router.post("/submit", submitController);
 
 // Edit post
-router.get("/editor", editorController);
+router.get("/edit/:lastPath", editorController);
 
 export default router;
