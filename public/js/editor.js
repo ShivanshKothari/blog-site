@@ -42,9 +42,8 @@ function formatSelectedText(openTag, closeTag) {
   }
   
   // "Show preview" functionality
-function togglePreview() {
-    document.querySelector(".main > input").classList.toggle("hidden");  
-    document.querySelector("#postPreview").classList.toggle("hidden");  
+function togglePreview() { 
+    document.querySelector(".main").classList.toggle("hidden");  
     document.querySelector("#postPreview").innerHTML = document.querySelector("#post_text").value;
     console.log(document.querySelector("#post_text").value)
     document.querySelector("#postContent").classList.toggle("hidden");  
@@ -54,3 +53,16 @@ function togglePreview() {
 document.querySelector("#heading").addEventListener("keyup", ()=> {
     document.querySelector("#url").value = encodeURIComponent(document.querySelector("#heading").value.trim());
 })
+document.querySelector('#post_text').addEventListener('input', () => {
+  // Calculate the optimal number of rows based on content
+  const rows = Math.ceil(textarea.value.split('\n').length + 1);
+
+  // Ensure a minimum of 20 rows and a maximum of 200 rows for flexibility
+  textarea.rows = Math.min(Math.max(20, rows), 200);
+});
+document.querySelectorAll("textarea").addEventListener()
+
+// Submit functionality
+function submit() {
+  document.querySelector("form").submit();
+}

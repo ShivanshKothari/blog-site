@@ -69,6 +69,17 @@ main > .postContent {
   border-right: #777 2px double;
 }
 
+.postContent a {
+  color: #d45c00;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+.postContent a:hover {
+  font-weight: 700;
+  color: black;
+}
+
 .main > .postContent p {
   max-width: 100%;
   margin: 0; /* Reset default margin */

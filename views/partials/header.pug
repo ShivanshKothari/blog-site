@@ -10,18 +10,15 @@ html
     link(rel="stylesheet", href= loginCSS)
     link(rel="icon", type="image/x-icon", href="/images/favicon.png")
     if (locals.homeCSS)
-      link(rel="stylesheet", href="stylesheets/index.css")
+      link(rel="stylesheet", href="/stylesheets/index.css")
   body
     nav
       .logo 
       .rightLinks 
+        //- ul
+        //-   li 
+        //-     a(href="/") Home
         ul
-          li 
-            a(href="/") Home
-         
-          li 
-            a(href="") About
-        
           li 
             a(href="/u")
               if(locals.loggedIn)

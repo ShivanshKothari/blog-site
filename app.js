@@ -8,6 +8,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
 import cron from "node-cron";
+import minify from "express-minify";
 
 import { config } from "dotenv";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -37,6 +38,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(minify({cache: __dirname + "/cache"}));
 
 
 // Session management setup

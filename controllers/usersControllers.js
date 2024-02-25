@@ -7,7 +7,6 @@ export const loginController = async (req, res) => {
   // Prepare page data for rendering
   const pageData = {
     title: "User Login",
-    loginCSS: "/stylesheets/login.css",
     loggedIn: req.session.authorized, // To show user icon if logged in
   };
 
@@ -16,17 +15,21 @@ export const loginController = async (req, res) => {
   // Check if user is already logged in
   if (req.session.authorized) {
     console.log("User already logged in, redirecting to post manager");
+    pageData["title"] = "Dashboard | " + req.session.user.email;
+    pageData["postManagerCSS"] = "/stylesheets/index.css";
+    pageData["indexCSS"] = "/stylesheets/post-manager.css";
+    pageData["postTiles"] = await Blog.find({})
+    .select("image_path heading url")
+    .sort({ id: -1 });
+    
     // Fetch and render blog posts
-    res.render("postmanager", {
-      postTiles: await Blog.find({})
-        .select("image_path heading url")
-        .sort({ id: -1 }),
-    });
+    res.render("postmanager", pageData);
   } else {
     // Handle potential login error message
     if (req.query["cred-error"] === "error") {
       pageData["warning"] = "Incorrect username or password ¬_¬" ;
     }
+    pageData.loginCSS = "/stylesheets/login.css";
 
     // Render login page with or without error message
     res.render("login", pageData);
@@ -62,12 +65,25 @@ export const submitController = async (req, res) => {
   }
 };
 
+// Logout controller function (handles logout)
+export const logoutController = async (req, res) => {
+  // Destroy session data for logged-in user
+  req.session.destroy(e => {
+    console.log("Logout error", e.message);
+  });
+  // Redirect to home page
+  res.redirect('/');
+};
+
 
 export const editorController = async (req, res) => {
-  const pageProps = {
-    author: req.session.user.email,
-    lastPath: req.params.lastPath
-  };
-  res.render('editor', pageProps);
+  if (req.session.authorized) {
+    const pageProps = {
+      author: req.session.user.email,
+      lastPath: req.params.lastPath
+    };
+    res.render('editor', pageProps);
+  }
+  else res.redirect('/u')
 
 };

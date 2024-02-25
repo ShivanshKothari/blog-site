@@ -1,32 +1,33 @@
 doctype html
 html
   head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
     title= title
     script(src="https://kit.fontawesome.com/1c01e734db.js") 
-    meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
-    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
+    link(rel="stylesheet", href= indexCSS)
+    link(rel="stylesheet", href= postManagerCSS)
     link(rel="stylesheet", href="/stylesheets/editor.css")
   body
     nav
-      .logo 
-        a(href="../" alt="Previous page link") 
-            img(src="/images/favicon.png", alt="Site Logo" height="20em")
+      ul
+        li
+            a(href="../")= '< Back'
       .rightLinks 
-        ul
-          li 
-            a(href="/" alt="Home page link") Home
+        //- ul
+        //-   li 
+        //-     a(href="/" alt="Home page link") Home
+        
         ul 
           li 
-            a(href="") About
-        ul 
-          li 
-            a(href="/u")
-              if(locals.loggedIn)
-                i.fa-solid.fa-user
-              else 
-                = 'Login'
+            if(locals.postManagerCSS)
+                a(href="/u/logout")
+                    = 'Logout'
+            else
+                a(onclick="submit()")
+                    != '<i class="fa-solid fa-floppy-disk"></i>'
     block content
