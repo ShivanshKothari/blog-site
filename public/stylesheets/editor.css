@@ -1,3 +1,14 @@
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  padding-top: 80px !important;
+}
+
 .blogMain * {
   color: #d45c00;
 }
@@ -16,18 +27,6 @@
 .toolBar > *:hover {
   color: #fff;
   background-color: #d45c00;
-}
-
-nav {
-  justify-content: space-between;
-}
-
-.rightLinks {
-  flex-direction: flex-start;
-}
-
-nav ul {
-    padding: 0 40px;
 }
 
 input {
@@ -73,7 +72,6 @@ input[type="file"] {
 }
 
 form {
-  min-height: 75vh;
   font-size: large;
 }
 

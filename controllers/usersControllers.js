@@ -18,10 +18,13 @@ export const loginController = async (req, res) => {
     pageData["title"] = "Dashboard | " + req.session.user.email;
     pageData["postManagerCSS"] = "/stylesheets/index.css";
     pageData["indexCSS"] = "/stylesheets/post-manager.css";
-    pageData["postTiles"] = await Blog.find({})
+    const postTiles = await Blog.find({})
     .select("image_path heading url")
     .sort({ id: -1 });
-    
+    postTiles.forEach(postTile => {
+      postTile.url = 'u/edit/' + postTile.url.split('/')[1];
+    });
+    pageData["postTiles"] = postTiles;
     // Fetch and render blog posts
     res.render("postmanager", pageData);
   } else {
@@ -80,9 +83,20 @@ export const editorController = async (req, res) => {
   if (req.session.authorized) {
     const pageProps = {
       author: req.session.user.email,
-      lastPath: req.params.lastPath
+      lastPath: req.params.lastPath,
+      editorCSS: "/stylesheets/editor.css",
     };
-    res.render('editor', pageProps);
+    const blogData = await Blog.findOne({url: 'blog/' + req.params.lastPath});
+    if (req.params.lastPath === "new-post"){
+      res.render('editor', pageProps);
+    }
+    
+    else if (blogData){
+      blogData.post_text = blogData.post_text.replaceAll('<br>', '\n');
+      pageProps["blogData"] = blogData;
+      res.render('editor', pageProps);
+    }
+    else res.redirect('/404')
   }
   else res.redirect('/u')
 

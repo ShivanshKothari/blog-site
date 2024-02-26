@@ -80,6 +80,8 @@ app.use("/blog", blogsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  // if (!(process.env.NODE_ENV !== 'production'))
+    res.render("error404");
   next(createError(404));
 });
 

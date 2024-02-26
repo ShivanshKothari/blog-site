@@ -1,41 +1,7 @@
-
-
-.post-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
+* {
+  box-sizing: border-box;
 }
 
-nav {
-  justify-content: space-between;
-}
-
-nav ul {
-  padding: 0 40px;
-}
-
-.rightLinks {
-  flex-direction: flex-start;
-}
-
-.post {
-  position: relative;
-  width: 30%;
-  margin: 1% 0;
-}
-
-.post img {
-  height: 5em;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  float: left;
-}
-
-.post-heading {
-  margin: 10px 0;
-  text-align: center;
-}
 
 .delete-button {
   position: absolute;

@@ -11,23 +11,38 @@ html
     link(rel="stylesheet", href= loginCSS)
     link(rel="stylesheet", href= indexCSS)
     link(rel="stylesheet", href= postManagerCSS)
-    link(rel="stylesheet", href="/stylesheets/editor.css")
+    link(rel="stylesheet", href= editorCSS)
   body
     nav
+      input#menu(type="checkbox")
+      label#menuButton(for="menu")
+        i.fa-solid.fa-bars
+      a(href="../")
+        label.logo!= '< Back'
       ul
-        li
-            a(href="../")= '< Back'
-      .rightLinks 
-        //- ul
-        //-   li 
-        //-     a(href="/" alt="Home page link") Home
-        
-        ul 
+        if (locals.postManagerCSS)
+          li
+            a(href="/u/logout") Logout
+          li
+            a(href="/u/profile") Profile
+          li
+            a(href="/u/edit/new-post") New Post
+          li#goBack
+            a(href="../") Go Back
+        if (locals.editorCSS)
           li 
-            if(locals.postManagerCSS)
-                a(href="/u/logout")
-                    = 'Logout'
-            else
-                a(onclick="submit()")
-                    != '<i class="fa-solid fa-floppy-disk"></i>'
+            a(onclick="submit()") Save Draft
+          li
+            a(onclick="submit()") Publish
+          li#goBack
+            a(href="../") Go Back
+        //- li 
+        //- ul 
+        //-   li 
+        //-     if(locals.postManagerCSS)
+        //-         a(href="/u/logout")
+        //-             = 'Logout'
+        //-     else
+        //-         a(onclick="submit()")
+        //-             != '<i class="fa-solid fa-floppy-disk"></i>'
     block content

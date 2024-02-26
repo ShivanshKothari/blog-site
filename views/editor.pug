@@ -5,40 +5,74 @@ block content
         .container-fluid
             
             form.row(action="submit" method="post")
-                #postContent.postContent.col-md-9.col-lg-9.p-4
-                    .form-group
-                        label(for="heading") Post title: 
-                        input(type="text" id="heading" name="heading" required)
-                    .form-group
-                        label.btn(for="image_path") Add Title Image
-                        //- input(type="button" value="Add Title Image")
-                        input(type="file" id="image_path" name="image_path" accept="image/*")
-                    .form-group(style="display: inline;box-sizing: border-box; position: relative")
-                        label(for="post_text") Post Text:
-                        .toolBar
-                            input(type="button" onclick="boldSelectedText()" value="B")
-                            input(type="button" onclick="italicSelectedText()" value="I")
-                            input(type="button" onclick="centerSelectedText()" value="C")
-                            input(type="button" onclick="createLinkSelectedText()" value!= "&#x1F517;")
-                            label(for="add_image") 🖼️
-                            input(type="file" onclick="createImage()" name="postImages[]" id="add_image" multiple accept="image/*")
-                            input(type="button" onclick="togglePreview()" value="Preview")
-                        textarea(id="post_text" name="post_text" rows="20" required)
-                .main.hidden.postContent.col-md-9.col-lg-9.p-4
-                    input(type="button" onclick="togglePreview()" value="Edit")
-                    #postPreview
-                            //- #postPreview
-                .suggestionsPane.col-md-9.col-lg-3.p-4
-                    //- h2 Also read
-                    .form-group
-                        label(for="url") URL:
-                    //- input(type="text" id="url" name="url" disabled)
-                    .form-group
-                        label(for="tags")!= 'Tags: <br>'   
-                        textarea#tags(name="tags", rows="2")
-                    .form-group
-                        label!= 'Author: ' + author
-                    //- input(type="text" id="author" name="author" value= author disabled)
+                if (locals.blogData)
+                    #postContent.postContent.col-md-9.col-lg-9.p-4
+                        .form-group
+                            label(for="heading") Post title: 
+                            input(type="text" id="heading" name="heading" value= blogData.heading required)
+                        .form-group
+                            label.btn(for="image_path") Add Title Image
+                            //- input(type="button" value="Add Title Image")
+                            input(type="file" id="image_path" name="image_path" accept="image/*")
+                        .form-group(style="display: inline;box-sizing: border-box; position: relative")
+                            label(for="post_text") Post Text:
+                            .toolBar
+                                input(type="button" onclick="boldSelectedText()" value="B")
+                                input(type="button" onclick="italicSelectedText()" value="I")
+                                input(type="button" onclick="centerSelectedText()" value="C")
+                                input(type="button" onclick="createLinkSelectedText()" value!= "&#x1F517;")
+                                label(for="add_image") 🖼️
+                                input(type="file" onclick="createImage()" name="postImages[]" id="add_image" multiple accept="image/*")
+                                input(type="button" onclick="togglePreview()" value="Preview")
+                            textarea(id="post_text" name="post_text" rows="30" required)
+                                != blogData.post_text
+                    .main.hidden.postContent.col-md-9.col-lg-9.p-4
+                        input(type="button" onclick="togglePreview()" value="Edit")
+                        #postPreview
+                                //- #postPreview
+                    .suggestionsPane.col-md-9.col-lg-3.p-4
+                        //- h2 Also read
+                        .form-group
+                            label URL:
+                        .form-group
+                            label(for="tags")!= 'Tags: <br>'   
+                            textarea#tags(name="tags", rows="2")
+                        .form-group
+                            label!= 'Author: ' + author
+                else
+                    #postContent.postContent.col-md-9.col-lg-9.p-4
+                        .form-group
+                            label(for="heading") Post title: 
+                            input(type="text" id="heading" name="heading" required)
+                        .form-group
+                            label.btn(for="image_path") Add Title Image
+                            //- input(type="button" value="Add Title Image")
+                            input(type="file" id="image_path" name="image_path" accept="image/*")
+                        .form-group(style="display: inline;box-sizing: border-box; position: relative")
+                            label(for="post_text") Post Text:
+                            .toolBar
+                                input(type="button" onclick="boldSelectedText()" value="B")
+                                input(type="button" onclick="italicSelectedText()" value="I")
+                                input(type="button" onclick="centerSelectedText()" value="C")
+                                input(type="button" onclick="createLinkSelectedText()" value!= "&#x1F517;")
+                                label(for="add_image") 🖼️
+                                input(type="file" onclick="createImage()" name="postImages[]" id="add_image" multiple accept="image/*")
+                                input(type="button" onclick="togglePreview()" value="Preview")
+                            textarea(id="post_text" name="post_text" rows="30" required)
+                    .main.hidden.postContent.col-md-9.col-lg-9.p-4
+                        input(type="button" onclick="togglePreview()" value="Edit")
+                        #postPreview
+                                //- #postPreview
+                    .suggestionsPane.col-md-9.col-lg-3.p-4
+                        //- h2 Also read
+                        .form-group
+                            label URL:
+                        .form-group
+                            label(for="tags")!= 'Tags: <br>'   
+                            textarea#tags(name="tags", rows="2")
+                        .form-group
+                            label!= 'Author: ' + author
+
 
     include partials/footer
     script(src="/js/editor.js") 
