@@ -12,7 +12,7 @@ export const homeController = async (req, res, next) => {
       homeCSS: "y", // Flag for applying specific CSS to homepage
       loggedIn: req.session.authorized, // To show user icon if logged in
     };
-
+    console.log(data.loggedIn);
     // Render the homepage template with data
     res.render("index", data);
   } catch (error) {
