@@ -12,7 +12,7 @@ block content
                     h2 Also read 
                     if (locals.postTiles)
                         each post in postTiles
-                            a(href=`/${post.url}`) 
+                            a(href=`/blog/${post.url}`) 
                                 .postTile
                                     img.img-fluid(src= post.image_path, alt="")
                                     h4= post.heading 

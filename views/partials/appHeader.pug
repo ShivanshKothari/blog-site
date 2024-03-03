@@ -10,32 +10,36 @@ html
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
     link(rel="stylesheet", href= indexCSS)
-    link(rel="stylesheet", href= postManagerCSS)
+    link(rel="stylesheet", href= dashboardCSS)
     link(rel="stylesheet", href= editorCSS)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript")
+
   body
     nav
       input#menu(type="checkbox")
       label#menuButton(for="menu")
         i.fa-solid.fa-bars
-      a(href="../")
+        #dropBG
+      a#backLink(href="../")
         label.logo!= '< Back'
       ul
-        if (locals.postManagerCSS)
+        if (locals.dashboardCSS)
           li
             a(href="/u/logout") Logout
           li
             a(href="/u/profile") Profile
+          if (locals.isAdmin)
+            li
+              a(href="/u/pending-posts") Pending Posts
           li
-            a(href="/u/edit/new-post") New Post
+            a(href="/edit/new-post") New Post
           li#goBack
-            a(href="../") Go Back
+            a(href="/") Home
         if (locals.editorCSS)
-          li 
-            a(onclick="submit()") Save Draft
           li
             a(onclick="submit()") Publish
           li#goBack
-            a(href="../") Go Back
+            a(href="/u") Go Back
         //- li 
         //- ul 
         //-   li 

@@ -9,8 +9,9 @@ html
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
-    if (locals.homeCSS)
-      link(rel="stylesheet", href="/stylesheets/index.css")
+    link(rel="stylesheet", href= indexCSS)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript")
+
   body
     nav
       input#menu(type="checkbox")

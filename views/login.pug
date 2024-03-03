@@ -2,18 +2,103 @@ extends partials/header
 
 block content
   main
-    form(action='/u/submit', method='post')
-      h1 Welcome Back!
-      label(for='email') Email:
-      input(type='email', id='email', name='email', required)
 
-      label(for='password') Password:
-      input(type='password', id='password', name='password', required)
+    if (locals.title === "User Login")
+      form(action='/u/submit' method='post')
+        h1 Welcome Back!
 
-      button(type='submit') Log In
+        label(for='email') Email:
+        input(type='email' id='email' name='email', required)
 
-      p#warning= warning
-      hr
-      label(for="Signup") Don't have an account? 
-        a(href="https://w3y2e11pis3.typeform.com/to/cXXUY148") SignUp
+        label(for='password') Password:
+        input(type='password' id='password' name='password', required)
+
+        ul#showpassword
+          li(onclick="showPassword(event)") Show Password
+
+        input(type='submit' value='Log In')
+
+        p#warning= warning
+        hr
+        label Want to write with us?
+          a(href="https://w3y2e11pis3.typeform.com/to/cXXUY148") Sign Up
+
+
+    else if (locals.title === "Signup")
+      form(action='/u/verify/account' method='post')
+        h1 Let's Get Started!
+        label(for='firstName') First Name:
+        input(type='firstName' id='firstName' name='firstName', required)
+
+        label(for='lastName') Last Name:
+        input(type='lastName' id='lastName' name='lastName', required)
+
+        label(for='email') Email:
+        input.validate(type='email' id='email' name='email', required)
+
+        label(for='tempPassword') Password:
+        input.validate(type='password' id='tempPassword' name='tempPassword', required)
+
+        label(for='password') Password:
+        input.validate(type='password' id='password' name='password', required)
+
+        ul#showpassword
+          li(onclick="showPassword(event)") Show Password
+
+        label#emailWarning
+
+        label#passwordWarning
+        input(type='submit' value='Sign Up' disabled)
+
+        label#warning= warning
+        hr
+        label Already a Vedian? 
+          a(href="/u") Log In
+        script(defer src="/js/signup.js" type="text/javascript")
+
+
+    else if (locals.title === "Forgot password")
+      form(action='/u/new-password' method='post')
+
+        h1 Let's get you back!
+
+        label(for='email') Email:
+        input(type='email' id='email' name='email')
+        input(type='button' value='Get OTP')
+
+        .form-group.hidden
+          label Enter the OTP you recieved in your email. Check All Mail if not seen.
+          label(for='tempPassword') OTP:
+          input.validate(type='text' id='otp' name='otp' oninput="this.value = this.value.toUpperCase()" required)
+
+        label#passwordWarning
+
+        .form-group.hidden
+          label(for='newPassword') Enter new password:
+          input(type='password' id='newPassword' name='newPassword' required)
+          
+          ul#showpassword
+            li(onclick="showPassword(event)") Show Password
+          input(type='submit' value='Verify' disabled)
+
+      script(src="/js/otpPage.js" type="text/javascript") 
+      script(src="login.js" type="text/javascript")
+
+
+    else if (locals.title === "Verify Account")
+      form(action='/u/signup/submit' method='post')
+
+        h1 Let's get you going!
+
+        label Enter the OTP you recieved in your email. Check All Mail if not seen.
+        label(for='tempPassword') OTP:
+        input.validate(type='text' id='otp' name='otp' oninput="this.value = this.value.toUpperCase()" required)
+
+        label#passwordWarning
+        input(type='submit' value='Verify' disabled)
+      script(src="/js/otpPage.js" type="text/javascript")
+
+
+
+  script(defer src="/js/login.js" type="text/javascript")
   include partials/footer

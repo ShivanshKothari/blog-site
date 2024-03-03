@@ -6,7 +6,7 @@ block content
   main.col-12.col-sm-12.col-md-8.col-lg-6
     h1 Latest Posts
     each postTile in postTiles
-      a(href=`/${postTile.url}`) 
+      a(href=`/blog/${postTile.url}`)
         .postCard
           img.img-responsive(src= postTile.image_path)
           h2= postTile.heading

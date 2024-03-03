@@ -9,7 +9,7 @@ export const homeController = async (req, res, next) => {
       postTiles: await Blog.find()
         .select("image_path url heading")
         .sort({ id: -1 }),
-      homeCSS: "y", // Flag for applying specific CSS to homepage
+      indexCSS: "/stylesheets/index.css", // Flag for applying specific CSS to homepage
       loggedIn: req.session.authorized, // To show user icon if logged in
     };
     console.log(data.loggedIn);

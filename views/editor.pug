@@ -4,7 +4,7 @@ block content
     main.blogMain 
         .container-fluid
             
-            form.row(action="submit" method="post")
+            form.row(action="submit" method="post" enctype="multipart/form-data")
                 if (locals.blogData)
                     #postContent.postContent.col-md-9.col-lg-9.p-4
                         .form-group
@@ -12,8 +12,7 @@ block content
                             input(type="text" id="heading" name="heading" value= blogData.heading required)
                         .form-group
                             label.btn(for="image_path") Add Title Image
-                            //- input(type="button" value="Add Title Image")
-                            input(type="file" id="image_path" name="image_path" accept="image/*")
+                            input(type="file" id="image_path" name="image_path")
                         .form-group(style="display: inline;box-sizing: border-box; position: relative")
                             label(for="post_text") Post Text:
                             .toolBar
@@ -36,7 +35,8 @@ block content
                             label URL:
                         .form-group
                             label(for="tags")!= 'Tags: <br>'   
-                            textarea#tags(name="tags", rows="2")
+                            textarea#tags(name="tags", rows="5")
+                                != blogData.tags
                         .form-group
                             label!= 'Author: ' + author
                 else

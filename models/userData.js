@@ -20,7 +20,11 @@ const userSchema = new mongoose.Schema({
   },
   achievements: {
     type: [String],
-    default: ["firstBadge"]
+    default: ["vedian"]
+  },
+  role: {
+    type: String,
+    default: "vedian"
   },
   description: {
     type: String,
@@ -28,7 +32,16 @@ const userSchema = new mongoose.Schema({
       return this.firstName + " is a new member of The Vedians.";
     },
     maxLength: 255
-  }
+  },
+  date_created: {
+    type: Date,
+    immutable: true,
+    default: Date.now(),
+  },
+  last_modified: {
+      type: Date,
+      default: Date.now()
+  },
 });
 
 const User = mongoose.model("users", userSchema);

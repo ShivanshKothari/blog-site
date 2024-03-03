@@ -4,6 +4,6 @@ import { blogController } from '../controllers/blogsControllers.js';
 const router = express.Router();
 
 // Load blog
-router.get('/:postPath', blogController);
+router.get('/:lastPath', blogController);
 
 export default router;

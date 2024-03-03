@@ -78,8 +78,11 @@ document.querySelector("#post_text").addEventListener("input", function() {
 
 // Submit functionality
 function submit() {
-  leaveMessage = fal
-  document.querySelector("form").submit();
+  const postForm = document.querySelector("form");
+  if (postForm.checkValidity()){
+    leaveMessage = false;
+    postForm.submit();
+  }
 }
 
 // Dynamic text area functionality

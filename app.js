@@ -18,9 +18,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
-import blogsRouter from "./routes/blogs.js";
+import indexRouter from "./routes/indexRouter.js";
+import usersRouter from "./routes/usersRouter.js";
+import blogsRouter from "./routes/blogsRouter.js";
+import editorRouter from "./routes/editorRouter.js";
 
 const app = express();
 
@@ -39,7 +40,6 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(minify({cache: __dirname + "/cache"}));
-
 
 // Session management setup
 cron.schedule('0 0 1 * *', () => {
@@ -77,6 +77,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/u", usersRouter);
 app.use("/blog", blogsRouter);
+app.use("/edit", editorRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

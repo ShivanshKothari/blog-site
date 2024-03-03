@@ -32,37 +32,16 @@ h1,h3 {
   font-size: xx-large;
 }
 
-/* nav {
-  position: fixed;
-  display: flex;
-  justify-content: space-around;
-  background-color: #d45c00;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 80px;
-  z-index: 2;
-} */
-
-/* nav ul {
-  display: flex;
-  gap: 1.2em
-}
-
-nav ul,nav a {
-  font-size: 1.5em;
-}
-
-.rightLinks {
-  display: flex;
-  justify-content: flex-end;
-} */
-
 nav {
   position: fixed;
   background-color: #d45c00;
   height: 80px;
   width: 100%;
   z-index: 1;
+}
+
+#backLink {
+  background: none;
 }
 
 #menu, #goBack {
@@ -74,6 +53,7 @@ label[for="menu"] {
   bottom: 5vh;
   right: 0;
   z-index: 2;
+  display: none;
 }
 
 label[for="menu"] i {
@@ -83,7 +63,6 @@ label[for="menu"] i {
   float: right;
   margin-right: 30px;
   cursor: pointer;
-  display: none;
   padding: 10px 0;
   width: 50px;
   text-align: center;
@@ -226,7 +205,7 @@ footer a {
 }
 
 @media (max-width: 768px) {
-  label[for="menu"] i, #goBack {
+  label[for="menu"], #goBack {
     display: block;
   }
   nav {
@@ -237,10 +216,10 @@ footer a {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: space-around;
+    align-items: flex-end;
     width: 100%;
     height: 100vh;
-    padding-bottom: 10vh;
+    padding-bottom: 15vh;
     text-align: center;
     top: 0;
     left: 100%;
@@ -254,7 +233,9 @@ footer a {
     color: rgb(247, 111, 6);
     font-size: 5vh;
     font-weight: 700;
-    -webkit-text-stroke-width: 0.5px;
+    letter-spacing: .1em;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: 4px 4px 0 #000;
     -webkit-text-stroke-color: #fff;
   }
   nav a:hover, nav a.active {
@@ -264,9 +245,7 @@ footer a {
   #menu:checked ~ ul {
     left: 0;
   }
-  main {
-    padding-top: 1em;
-  }
+  
 }
 
 @media (max-width: 582px) {
