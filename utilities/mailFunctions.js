@@ -18,14 +18,7 @@ const transport = createTransport({
 });
 
 export const sendOTP = async (userEmail, OTP) => {
-    // const transport = createTransport({
-    //     host: 'smtp-relay.sendinblue.com',
-    //     port: 587,
-    //     auth: {
-    //         user: 'shivanshkothari.testing@gmail.com',
-    //         pass: 'xsmtpsib-09504187cd7859eeba0bbeb6d9e68fbb02068c89de07994899014dfae333fc5f-dt7Q2cWZqAO9v5Bx'
-    //     }
-    // });
+    
     const mailOptions = {
         from: 'shivanshkothari.testing@gmail.com',
         to: userEmail,
