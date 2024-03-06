@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
-const blogDataSchema = new mongoose.Schema({
+// Draft blogs schema
+const draftBlogSchema = new mongoose.Schema({
     id: Number,
     url: {
         type: String,
@@ -42,7 +43,7 @@ const blogDataSchema = new mongoose.Schema({
     }
 });
 
-blogDataSchema.pre('save', async function (next) {
+draftBlogSchema.pre('save', async function (next) {
     try {
         if (!this.isNew) { // Check if the document is being created for the first time
             return next();
@@ -56,8 +57,4 @@ blogDataSchema.pre('save', async function (next) {
     }
 });
 
-export const Blog = mongoose.model('blogDatas', blogDataSchema);
-
-// export const blogPosts = Blog.find();
-// export const postTiles = Blog.find().select('image_path url heading');
-
+export const draftBlog = mongoose.model('draftBlogs', draftBlogSchema);

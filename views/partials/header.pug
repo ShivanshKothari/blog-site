@@ -1,31 +1,48 @@
 doctype html
 html
   head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="icon", type="image/x-icon", href="/images/logo.png")
     title= title
     script(src="https://kit.fontawesome.com/1c01e734db.js") 
-    meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
-    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
-    if (locals.homeCSS)
-      link(rel="stylesheet", href="stylesheets/index.css")
+    link(rel="stylesheet", href= indexCSS)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript")
+
   body
     nav
-      .logo 
-      .rightLinks 
-        ul
-          li 
-            a(href="/") Home
-         
-          li 
-            a(href="") About
-        
-          li 
-            a(href="/u")
-              if(locals.loggedIn)
-                i.fa-solid.fa-user
-              else 
-                = 'Login'
+      input#menu(type="checkbox")
+      label#menuButton(for="menu")
+        i.fa-solid.fa-bars
+      label.logo Om
+      ul
+        li
+          a(href="/") Home
+        li
+          a(href="/vedians") The Vedians
+        li 
+          a(href="/u")
+            if(locals.loggedIn)
+              | Dashboard
+            else 
+              | Login  
+        li 
+      //- ul
+      //-   li 
+      //-     a(href="/")
+      //-       img#logo.img-fluid(src="/images/logo.png")
+      //- .rightLinks 
+      //-   //- ul
+      //-   //-   li 
+      //-   //-     a(href="/") Home
+      //-   ul
+      //-     li 
+      //-       a(href="/u")
+      //-         if(locals.loggedIn)
+      //-           i.fa-solid.fa-user
+      //-         else 
+      //-           = 'Login'
     block content

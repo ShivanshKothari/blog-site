@@ -1,11 +1,86 @@
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  padding-top: 80px !important;
+}
+
+.blogMain * {
+  color: #d45c00;
+}
+
 .toolBar {
-    display: flex;
+  display: flex;
+  gap: 0.5%;
+}
+
+.toolBar > * {
+  border: solid 2px #d45c00;
+  border-radius: 5%;
+  flex-basis: 2em;
+}
+
+.toolBar > *:hover {
+  color: #fff;
+  background-color: #d45c00;
+}
+
+input {
+  border: solid 2px #d45c00;
+  border-radius: 3px;
+  width: 100%;
+  margin: 10px 0;
+  line-height: 1.5em;
+}
+
+input[type="button"]:hover {
+  color: #fff;
+  background-color: #d45c00;
+}
+
+textarea {
+  border: solid 2px #d45c00;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+label[for="image_path"] {
+  display: inline;
+  background-color: #d45c00;
+  color: white;
+  border: solid 1px #d45c00;
+  border-radius: 5%;
+  padding: 10px;
+  transition-duration: 200ms;
+}
+label[for="image_path"]:hover {
+  background-color: #fff;
+  color: #d45c00;
+}
+
+label[for="add_image"] {
+  text-align: center;
+  margin: 10px 0;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 form {
-    min-height: 80vh;
+  font-size: large;
+}
+
+#postContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }

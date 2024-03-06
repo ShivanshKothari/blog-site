@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+.post:hover {
+  .delete-button {
+    display: block;
+  }
+}

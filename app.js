@@ -8,6 +8,7 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
 import cron from "node-cron";
+import minify from "express-minify";
 
 import { config } from "dotenv";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,9 +18,10 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
-import blogsRouter from "./routes/blogs.js";
+import indexRouter from "./routes/indexRouter.js";
+import usersRouter from "./routes/usersRouter.js";
+import blogsRouter from "./routes/blogsRouter.js";
+import editorRouter from "./routes/editorRouter.js";
 
 const app = express();
 
@@ -37,7 +39,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(minify({cache: __dirname + "/cache"}));
 
 // Session management setup
 cron.schedule('0 0 1 * *', () => {
@@ -75,9 +77,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/u", usersRouter);
 app.use("/blog", blogsRouter);
+app.use("/edit", editorRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  // if (!(process.env.NODE_ENV !== 'production'))
+    res.render("error404");
   next(createError(404));
 });
 

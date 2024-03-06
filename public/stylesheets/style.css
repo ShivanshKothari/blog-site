@@ -1,5 +1,13 @@
 /* COLOR PALETTE https://colorhunt.co/palette/1d2b537e2553ff004dfaef5d */
 
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #EEE;
   padding: 0;
@@ -8,10 +16,12 @@ body {
   width: 100%;
 }
 
-
-
 a {
-  color: #00ADB5;
+  color: #fff;
+}
+
+a:hover {
+  text-shadow: 1px 1px 5px #fff;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -24,35 +34,75 @@ h1,h3 {
 
 nav {
   position: fixed;
-  display: flex;
-  justify-content: space-around;
   background-color: #d45c00;
-  flex-wrap: wrap;
+  height: 80px;
   width: 100%;
+  z-index: 1;
+}
+
+#backLink {
+  background: none;
+}
+
+#menu, #goBack {
+  display: none;
+}
+
+label[for="menu"] {
+  position: fixed;
+  bottom: 5vh;
+  right: 0;
   z-index: 2;
-  box-sizing: border-box;
+  display: none;
+}
+
+label[for="menu"] i {
+  color: white;
+  background-color: #d45c00;
+  font-size: 24px;
+  float: right;
+  margin-right: 30px;
+  cursor: pointer;
+  padding: 10px 0;
+  width: 50px;
+  text-align: center;
+  border: 5px solid #fff;
+  border-radius: 15px;
+}
+
+label.logo {
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px 0 40px;
+  font-weight: bold;
 }
 
 nav ul {
-  display: flex;
-  gap: 1.2em
+  float: right;
+  margin-right: 20px;
 }
 
-nav ul,a {
-  color: white;
-  font-size: 1.5em;
-  list-style: none;
-  text-decoration: none;
+nav ul li {
+  display: inline-block;
+  line-height: 80px;
 }
 
-.rightLinks {
-  display: flex;
-  justify-content: flex-end;
+nav ul li a {
+  font-size: 24px;
+  padding: 7px 13px;
+  margin: 5px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
 
+nav a.active, nav a:hover {
+  color: #d45c00;
+  background-color: #fff;
 }
 
 main {
-  padding-top: 6em;
+  padding-top: 80px;
   box-sizing: border-box;
 }
 
@@ -60,6 +110,7 @@ main.blogMain{
   display: flex;
   flex-basis: 200px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 main > .postContent {
@@ -69,19 +120,37 @@ main > .postContent {
   border-right: #777 2px double;
 }
 
+.postContent a {
+  color: #d45c00;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+.postContent a:hover {
+  font-weight: 700;
+  color: black;
+}
+
 .main > .postContent p {
   max-width: 100%;
   margin: 0; /* Reset default margin */
   font-size: 14px; /* Adjust font size as needed */
   line-height: 1.6; /* Set a comfortable line height */
   word-wrap: break-word; /* Allow long words to break and wrap */
-
+  
 }
 
 .postContent > img{
   margin: 2em 0em;
   max-width: 500px;
   align-self: center;
+}
+
+img {
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 p {
@@ -95,19 +164,14 @@ main > .suggestionsPane {
 .postTile {
   display: flex;
   flex-direction: column;
-  padding-left: 1em;
+  padding: 1em;
 }
 
 .postTile h4 {
   color: black;
+  margin-top: 10px;
 }
 
-img {
-  object-fit: cover;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  box-sizing: border-box;
-}
 
 footer {
   display: flex;
@@ -115,12 +179,11 @@ footer {
   justify-content: space-around;
   flex-wrap: wrap;
   background-color: #d45c00;
-  padding: 1em;
+  padding: 2em;
 }
 
-footer h3 {
+footer h4 {
   color: #EEE;
-
 }
 
 footer ul {
@@ -136,16 +199,64 @@ footer a {
 }
 
 @media (max-width: 992px) {
-  .postContent img {
-    min-width: 250px;
+  label.logo {
+    font-size: 30px;
   }
 }
 
-@media (max-width: 780px) {
-  main > .postContent {
-    max-width: 100%;
+@media (max-width: 768px) {
+  label[for="menu"], #goBack {
+    display: block;
   }
-  nav ul,a {
-    font-size: 1em;
+  nav {
+    position: absolute;
+  }
+  nav ul {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 15vh;
+    text-align: center;
+    top: 0;
+    left: 100%;
+    transition: all .5s;
+    backdrop-filter: blur(15px);
+  }
+  nav ul li {
+    line-height: 50px;
+  }
+  nav a {
+    color: rgb(247, 111, 6);
+    font-size: 5vh;
+    font-weight: 700;
+    letter-spacing: .1em;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: 4px 4px 0 #000;
+    -webkit-text-stroke-color: #fff;
+  }
+  nav a:hover, nav a.active {
+    text-shadow: 1px 1px 5px #eee;
+    background: none;
+  }
+  #menu:checked ~ ul {
+    left: 0;
+  }
+  
+}
+
+@media (max-width: 582px) {
+  footer {
+    flex-direction: column;
+  }
+  footer h4 {
+    padding: 1em 0;
+  }
+  footer ul {
+    flex-direction: column;
+    justify-content: center;
   }
 }

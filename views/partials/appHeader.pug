@@ -1,32 +1,52 @@
 doctype html
 html
   head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
     title= title
     script(src="https://kit.fontawesome.com/1c01e734db.js") 
-    meta(name="viewport", content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/stylesheets/bootstrap-grid.min.css")
     link(rel="stylesheet", href="/stylesheets/bootstrap-utilities.min.css")
     link(rel="stylesheet", href="/stylesheets/style.css")
     link(rel="stylesheet", href= loginCSS)
-    link(rel="icon", type="image/x-icon", href="/images/favicon.png")
-    link(rel="stylesheet", href="/stylesheets/editor.css")
+    link(rel="stylesheet", href= indexCSS)
+    link(rel="stylesheet", href= dashboardCSS)
+    link(rel="stylesheet", href= editorCSS)
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" type="text/javascript")
+
   body
     nav
-      .logo 
-        a(href="../" alt="Previous page link") 
-            img(src="/images/favicon.png", alt="Site Logo" height="20em")
-      .rightLinks 
-        ul
-          li 
-            a(href="/" alt="Home page link") Home
-        ul 
-          li 
-            a(href="") About
-        ul 
-          li 
-            a(href="/u")
-              if(locals.loggedIn)
-                i.fa-solid.fa-user
-              else 
-                = 'Login'
+      input#menu(type="checkbox")
+      label#menuButton(for="menu")
+        i.fa-solid.fa-bars
+        #dropBG
+      a#backLink(href="../")
+        label.logo!= '< Back'
+      ul
+        if (locals.dashboardCSS)
+          li
+            a(href="/u/logout") Logout
+          li
+            a(href="/u/profile") Profile
+          if (locals.isAdmin)
+            li
+              a(href="/u/pending-posts") Pending Posts
+          li
+            a(href="/edit/new-post") New Post
+          li#goBack
+            a(href="/") Home
+        if (locals.editorCSS)
+          li
+            a(onclick="submit()") Publish
+          li#goBack
+            a(href="/u") Go Back
+        //- li 
+        //- ul 
+        //-   li 
+        //-     if(locals.postManagerCSS)
+        //-         a(href="/u/logout")
+        //-             = 'Logout'
+        //-     else
+        //-         a(onclick="submit()")
+        //-             != '<i class="fa-solid fa-floppy-disk"></i>'
     block content
