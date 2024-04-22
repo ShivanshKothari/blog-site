@@ -16,7 +16,7 @@
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/YourUsername/my-vedic-journey.git
+   git clone https://github.com/ShivanshKothari/blog-site.git
    cd my-vedic-journey
    ```
 
