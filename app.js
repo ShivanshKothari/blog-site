@@ -3,7 +3,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import logger from "morgan";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import { randomBytes } from "crypto";
@@ -26,7 +26,7 @@ import editorRouter from "./routes/editorRouter.js";
 const app = express();
 
 // mongoose db connection setup
-mongoose.connect(process.env.DATABASE_URL, {dbName: "siteData"});
+mongoose.connect(process.env.DATABASE_URL, { dbName: "siteData" });
 const db = mongoose.connection;
 db.on("error", (err) => console.error(err));
 db.once("open", () => console.log("done"));
@@ -39,7 +39,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(minify({cache: __dirname + "/cache"}));
+app.use(minify({ cache: __dirname + "/cache" }));
 
 // Session management setup
 cron.schedule('0 0 1 * *', () => {
@@ -82,7 +82,7 @@ app.use("/edit", editorRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   // if (!(process.env.NODE_ENV !== 'production'))
-    res.render("error404");
+  res.render("error404");
   next(createError(404));
 });
 
