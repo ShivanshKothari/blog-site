@@ -21,8 +21,11 @@ export const loginController = async (req, res) => {
     console.log("User already logged in, redirecting to dashboard");
 
     // Initializing CSS path and page title
-    pageData["title"] = "Dashboard | " + req.session.user.email;
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+    pageData["title"] = `Dashboard | ${req.session.user.email}`;
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
     pageData["dashboardCSS"] = "/stylesheets/dashboard.css";
+    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
     pageData["indexCSS"] = "/stylesheets/index.css";
 
     // Fetch all posts and change url to 'u/edit/*' to reach editor route
