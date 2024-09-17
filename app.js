@@ -1,12 +1,12 @@
 import createError from "http-errors";
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import logger from "morgan";
 import mongoose, { mongo } from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { randomBytes } from "crypto";
+import { randomBytes } from "node:crypto";
 import cron from "node-cron";
 import minify from "express-minify";
 
@@ -39,7 +39,7 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(minify({cache: __dirname + "/cache"}));
+app.use(minify({cache: `${__dirname}/cache`}));
 
 // Session management setup
 cron.schedule('0 0 1 * *', () => {

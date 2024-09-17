@@ -4,6 +4,7 @@ import { OTP } from "../models/OTP.js";
 import bcrypt from "bcrypt";
 import { generateOTP } from "../utilities/generationFunctions.js";
 import { sendOTP } from "../utilities/mailFunctions.js";
+import { draftBlog } from "../models/draftBlogs.js";
 
 // Dashboard / Login controller function (Shows dashboard if logged in and Log in page if not)
 export const loginController = async (req, res) => {
@@ -25,6 +26,18 @@ export const loginController = async (req, res) => {
     pageData["indexCSS"] = "/stylesheets/index.css";
 
     // Fetch all posts and change url to 'u/edit/*' to reach editor route
+    const draftTiles = {};
+    if (req.user.isAdmin) {
+      draftTiles = await draftBlog
+        .find({})
+        .select("image_path heading url")
+        .sort({ id: -1 })
+        .skip(parseInt(req.query.page) * 10 || 0)
+        .limit(10);
+      draftTiles.forEach((draftTile) => {
+        draftTile.url = "edit/" + draftTile.url;
+      });
+    }
     const postTiles = await Blog.find({})
       .select("image_path heading url")
       .sort({ id: -1 })
@@ -39,9 +52,12 @@ export const loginController = async (req, res) => {
     res.render("dashboard", pageData);
   } else {
     // Handle potential login error message
-    
-    pageData["warning"] = req.query["cred-error"] === "error" ? "Incorrect username or password ¬_¬" : '';
-    
+
+    pageData["warning"] =
+      req.query["cred-error"] === "error"
+        ? "Incorrect username or password ¬_¬"
+        : "";
+
     pageData.loginCSS = "/stylesheets/login.css";
 
     // Render login page with or without error message
@@ -109,46 +125,40 @@ export const signupController = async (req, res) => {
 
 // Verification controller function (handles 'Account Verification' and 'Forgot Password')
 export const signupSubmitController = async (req, res) => {
-  
-  if (req.session.OTPVerified){
+  if (req.session.OTPVerified) {
     await User.create(req.session.tempUser);
     req.session.tempUser = null;
     req.session.OTPVerified = false;
     res.redirect("/u");
-  }
-  else {
-    res.redirect('/');
+  } else {
+    res.redirect("/");
   }
   console.log("Reached signup submit controller");
 };
 
 // Verification controller function (handles 'Account Verification' and 'Forgot Password')
 export const verifyController = async (req, res) => {
-  
-  if (req.params.lastPath === "account"){
+  if (req.params.lastPath === "account") {
     sendOTP(req.body.email, await generateOTP(req.body.email));
-    await bcrypt.hash(req.body.password, 15)
-    .then((hashedPassword) => {
-    req.session.tempUser = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: hashedPassword
-    }
+    await bcrypt.hash(req.body.password, 15).then((hashedPassword) => {
+      req.session.tempUser = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: hashedPassword,
+      };
     });
     const pageData = {
       loginCSS: "/stylesheets/login.css",
       title: "Verify Account",
-
     };
-    res.render('login', pageData);
-  }
-  else if (req.params.lastPath === "forgot-password"){
+    res.render("login", pageData);
+  } else if (req.params.lastPath === "forgot-password") {
     const pageData = {
       loginCSS: "/stylesheets/login.css",
       title: "Forgot password",
     };
-    res.render('login', pageData);
+    res.render("login", pageData);
   }
 };
 
@@ -160,16 +170,15 @@ export const redundantEmailValidationController = async (req, res) => {
   // Check if email exists in database
   try {
     // Check if cname already exists in the database
-    const existingUser = await User.findOne({ email: email});
+    const existingUser = await User.findOne({ email: email });
 
     if (existingUser) {
       res.json({ isValid: false, message: "Email already exists" });
-     if (req.body.requestSource){
-      sendOTP(email, generateOTP(email));
-      console.log("Otp generated successfully");
-     }
+      if (req.body.requestSource) {
+        sendOTP(email, generateOTP(email));
+        console.log("Otp generated successfully");
+      }
       // Generate OTP if email validation is used from forgot password page
-
     } else {
       res.json({ isValid: true, message: "Email is not taken" });
     }
@@ -181,12 +190,11 @@ export const redundantEmailValidationController = async (req, res) => {
 
 // OTP verification controller function (handles OTP verification generally over ajax)
 export const verifyOTPController = async (req, res) => {
-
   try {
     // Check if OTP exists in the database
-    const validOTP = await OTP.findOne({ 
-      email: req.session.userEmail, 
-      otp: req.body.otp.trim()
+    const validOTP = await OTP.findOne({
+      email: req.session.userEmail,
+      otp: req.body.otp.trim(),
     });
 
     if (validOTP) {
@@ -199,6 +207,5 @@ export const verifyOTPController = async (req, res) => {
   } catch (err) {
     console.error("OTP verification error:", err);
     res.status(500).json({ isValid: false, message: "Internal server error" });
-  
   }
 };
