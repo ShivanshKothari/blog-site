@@ -5,7 +5,7 @@ export const blogController = async (req, res) => {
   // Extract the blog post path from request parameters
   const postPath = req.params.lastPath;
 
-  console.log("Request path:", req.path); // Log the full request path
+  // console.log("Request path:", req.path); // Log the full request path
 
   try {
     // Fetch blog post data
