@@ -1,14 +1,21 @@
-import express from "express";
-import { editorController, publishController } from "../controllers/editorControllers.js";
-import { upload } from "../utilities/multer.js";
-import fileUpload from "express-fileupload";
+import express from 'express';
+import { editorController, publishController, deleteController, reviewController, previewController } from '../controllers/editorControllers.js';
+import fileUpload from 'express-fileupload';
 
 const router = express.Router();
-router.use(fileUpload());
-// Edit or create blog posts
-router.get("/:lastPath", editorController);
 
-// Submit request to publish or edit blog posts
-router.post("/submit", publishController);
+// Configure file upload middleware
+router.use(fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB max file size
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
+
+// Editor routes
+router.get('/:lastPath', editorController);
+router.post('/publish/:id?', publishController);  // For new posts and editing existing posts
+router.post('/delete/:id', deleteController);
+router.post('/review/:id', reviewController);
+router.get('/preview/:id', previewController);
 
 export default router;

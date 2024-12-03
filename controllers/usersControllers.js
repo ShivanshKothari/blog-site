@@ -1,6 +1,7 @@
 import { Blog } from "../models/blogsData.js";
 import { User } from "../models/userData.js";
 import { OTP } from "../models/OTP.js";
+import { draftBlog } from "../models/draftBlogs.js";
 import bcrypt from "bcrypt";
 import { generateOTP } from "../utilities/generationFunctions.js";
 import { sendOTP } from "../utilities/mailFunctions.js";
@@ -23,17 +24,35 @@ export const loginController = async (req, res) => {
     pageData["title"] = "Dashboard | " + req.session.user.email;
     pageData["dashboardCSS"] = "/stylesheets/dashboard.css";
     pageData["indexCSS"] = "/stylesheets/index.css";
+    pageData["isAdmin"] = req.session.isAdmin;
+    
+    // If admin, fetch draft posts
+    if (req.session.isAdmin) {
+      const draftTiles = await draftBlog.find({})
+        .select("image_path heading url")
+        .sort({ id: -1 });
+      
+      // Mark drafts for different UI treatment
+      draftTiles.forEach(postTile => {
+        postTile.isDraft = true;
+        postTile.url = "edit/" + postTile.url;
+      });
+      pageData["draftTiles"] = draftTiles;
+      console.log(pageData["isAdmin"], "Admin logged in");
+    }
 
-    // Fetch all posts and change url to 'u/edit/*' to reach editor route
-    const postTiles = await Blog.find({})
+    // Fetch published posts
+    const publishedTiles = await Blog.find({})
       .select("image_path heading url")
       .sort({ id: -1 })
       .skip(parseInt(req.query.page) * 10 || 0)
       .limit(10);
-    postTiles.forEach((postTile) => {
+    
+    publishedTiles.forEach(postTile => {
       postTile.url = "edit/" + postTile.url;
     });
-    pageData["postTiles"] = postTiles;
+    
+    pageData["postTiles"] = publishedTiles;
 
     // Render dashboard page
     res.render("dashboard", pageData);

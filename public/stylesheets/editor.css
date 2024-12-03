@@ -84,3 +84,38 @@ form {
 .hidden {
   display: none !important;
 }
+
+/* Action buttons */
+.approve-btn, .reject-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+  margin-left: 8px;
+}
+
+.approve-btn {
+  background-color: #4CAF50;
+}
+
+.approve-btn:hover {
+  background-color: #45a049;
+}
+
+.reject-btn {
+  background-color: #f44336;
+}
+
+.reject-btn:hover {
+  background-color: #da190b;
+}
+
+.approve-btn i, .reject-btn i {
+  font-size: 1.1em;
+}

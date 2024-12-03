@@ -1,4 +1,5 @@
 let leaveMessage = true;
+
 function formatSelectedText(openTag, closeTag) {
   const myTextarea = document.getElementById("post_text");
 
@@ -95,3 +96,55 @@ function dynamicTextArea(id) {
   // Ensure a minimum of 20 rows and a maximum of 200 rows for flexibility
   textArea.rows = Math.min(Math.max(30, rows), 200);
 }
+
+// Handle approve/reject actions
+async function handleReviewAction(action, postId) {
+  try {
+    const response = await fetch(`/edit/review/${postId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ action })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || 'Error processing review action');
+    }
+
+    // Show success message
+    alert(result.message);
+    
+    // Redirect to dashboard
+    window.location.href = '/u';
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to process review action. Please try again.');
+  }
+}
+
+// Attach event listeners to approve/reject buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const approveBtn = document.querySelector('.approve-btn');
+  const rejectBtn = document.querySelector('.reject-btn');
+  
+  if (approveBtn) {
+    approveBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const postId = new URLSearchParams(window.location.search).get('id');
+      handleReviewAction('approve', postId);
+    });
+  }
+  
+  if (rejectBtn) {
+    rejectBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (confirm('Are you sure you want to reject this post? This action cannot be undone.')) {
+        const postId = new URLSearchParams(window.location.search).get('id');
+        handleReviewAction('reject', postId);
+      }
+    });
+  }
+});

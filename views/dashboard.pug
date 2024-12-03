@@ -1,21 +1,41 @@
-extends partials/appHeader
-
+extends layout
 
 block content
-  main.col-12.col-sm-12.col-md-8.col-lg-6
-    h1 Edit Posts
-    each postTile in postTiles
-      a(href=`/${postTile.url}`) 
-        .postCard
-          img.img-responsive(src= postTile.image_path)
-          h2= postTile.heading
   main.blogMain
+    if isAdmin
+      h2.section-title Drafts Pending Review
+      .post-container
+        each post in draftTiles
+          .post.draft(data-post-id=post._id)
+            img(src=post.image_path alt=post.heading)
+            h2.post-heading= post.heading
+            .draft-badge Draft
+            button.delete-button(onclick="deletePost(this)" data-post-id=post._id) 
+              i.fa-solid.fa-trash-can
+            .post-actions
+              button.review-btn.approve-btn(onclick=`reviewPost('${post._id}', 'approve')`)
+                i.fas.fa-check-circle
+                span Approve
+              button.review-btn.reject-btn(onclick=`reviewPost('${post._id}', 'reject')`)
+                i.fas.fa-times-circle
+                span Reject
+            .preview-action
+              a.review-btn.preview-btn(href=`/edit/preview/${post._id}` target="_blank")
+                i.fas.fa-eye
+                span Preview
+
+    h2.section-title Published Posts
     .post-container
-      p astarst
       each post in postTiles
-        .post
+        .post(data-post-id=post._id)
           img(src=post.image_path alt=post.heading)
-          h2.post-heading.eg5(onmouseover="toggleDeleteButton(this)") #{post.heading}
-          button.delete-button(onclick="deletePost(this)" hidden) 
+          h2.post-heading= post.heading
+          button.delete-button(onclick="deletePost(this)" data-post-id=post._id) 
             i.fa-solid.fa-trash-can
-  include partials/footer
+          .post-actions
+            a.edit-btn(href=`/${post.url}`)
+              i.fas.fa-edit
+              span Edit
+
+block styles
+  script(src="/js/dashboard.js")
