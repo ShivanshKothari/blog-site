@@ -29,11 +29,7 @@ html
         if (locals.dashboardCSS)
           li
             a(href="/u/logout") Logout
-          li
-            a(href="/u/profile") Profile
-          if (locals.isAdmin)
-            li
-              a(href="/u/pending-posts") Pending Posts
+          
           li
             a(href="/edit/new-post") New Post
           li#goBack
